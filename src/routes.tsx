@@ -1,8 +1,17 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, Outlet, useParams } from "react-router-dom";
 import App from "./App";
 import ConnectorsView from "./views/Connectors/page";
 import { IndexSample } from "./views/Indices/indexSample";
 import { IndicesLayout } from "./views/Indices/layout";
+
+const Test = ({ title }: any) => {
+
+  const { id } = useParams()
+
+  return (
+    <h1>{title}{id && ` - ${id}`}</h1>
+  )
+}
 
 export const Routes = createBrowserRouter([
   {
@@ -14,14 +23,60 @@ export const Routes = createBrowserRouter([
         element: <IndicesLayout />,
         children: [
           {
-            path: "foo/:foo",
+            path: ":id",
             element: <IndexSample />,
+          },
+          {
+            path: "settings",
+            element: <Test title='Settings' />,
           },
         ],
       },
       {
         path: "connectors",
         element: <ConnectorsView />,
+        children: [
+          {
+            path: ":id",
+            element: <Test title='Connector detail' />,
+          }
+        ]
+      },
+      {
+        path: "web-crawlers",
+        element: <div><h1>Web Crawlers</h1><Outlet /></div>,
+        children: [
+          {
+            path: ":id",
+            element: <Test title='Web crawler detail' />,
+          }
+        ]
+      },
+      {
+        path: "relevance",
+        element: <><Test title="Relevance Overview" /><Outlet /></>,
+        children: [
+          {
+            path: "inference-endpoints",
+            element: <Test title='Inference Endpoints' />,
+          },
+          {
+            path: "query-rules",
+            element: <Test title='Query Rules' />,
+          },
+        ]
+      },
+      {
+        path: "search-applications",
+        element: <h1>Search Applications</h1>
+      },
+      {
+        path: "behavioral-analytics",
+        element: <h1>Behavioral Analytics</h1>
+      },
+      {
+        path: "getting-started",
+        element: <h1>Getting Started</h1>
       },
     ],
   },
