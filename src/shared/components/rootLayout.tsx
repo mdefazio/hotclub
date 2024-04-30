@@ -1,9 +1,12 @@
 import { PageWrapper } from "./pageWrapper";
 
-export const RootLayout = ({
-  children,
-}: Readonly<{
+type RootLayoutProps = {
   children: React.ReactNode;
-}>) => {
-  return <PageWrapper>{children}</PageWrapper>;
+  mode: "stack" | "serverless";
+};
+export const RootLayout: React.FC<RootLayoutProps> = ({
+  children,
+  mode = "serverless",
+}) => {
+  return <PageWrapper mode={mode}>{children}</PageWrapper>;
 };

@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@elastic/charts": "^64.1.0",
     "@elastic/datemath": "^5.0.3",
     "@elastic/eui": "^94.2.0",
     "@emotion/css": "^11.11.2",

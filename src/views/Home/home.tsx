@@ -41,34 +41,9 @@ export const HomeView = () => {
   return (
     <>
       <EuiFlexGroup direction="column">
-        <EuiFlexItem>
-          <EuiTitle size="s">
-            <h3>Ingest your content</h3>
-          </EuiTitle>
-        </EuiFlexItem>
-        <EuiFlexGroup>
-          <EuiFlexItem>
-            <GetStartedPanel
-              heading="API"
-              description="Add documents programmatically by connecting with the API using your preferred language client."
-              slug="./content/api-index/overview"
-            />
-          </EuiFlexItem>
-          <EuiFlexItem>
-            <GetStartedPanel
-              heading="Connectors"
-              description="Extract, transform, index and sync data from a third-party data source."
-              slug="./content/connectors/overview"
-            />
-          </EuiFlexItem>
-          <EuiFlexItem>
-            <GetStartedPanel
-              heading="Web Crawlers"
-              description="Discover, extract, and index searchable content from websites and knowledge bases."
-              slug="./content/crawlers/overview"
-            />
-          </EuiFlexItem>
-        </EuiFlexGroup>
+        <EuiTitle size="l">
+          <EuiText>Welcome to Elasticsearch</EuiText>
+        </EuiTitle>
       </EuiFlexGroup>
     </>
   );

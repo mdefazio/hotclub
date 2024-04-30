@@ -5,13 +5,15 @@ import { IndexSample } from "./views/Indices/indexSample";
 import { IndicesLayout } from "./views/Indices/layout";
 
 const Test = ({ title }: any) => {
-
-  const { id } = useParams()
+  const { id } = useParams();
 
   return (
-    <h1>{title}{id && ` - ${id}`}</h1>
-  )
-}
+    <h1>
+      {title}
+      {id && ` - ${id}`}
+    </h1>
+  );
+};
 
 export const Routes = createBrowserRouter([
   {
@@ -28,7 +30,7 @@ export const Routes = createBrowserRouter([
           },
           {
             path: "settings",
-            element: <Test title='Settings' />,
+            element: <Test title="Settings" />,
           },
         ],
       },
@@ -38,45 +40,55 @@ export const Routes = createBrowserRouter([
         children: [
           {
             path: ":id",
-            element: <Test title='Connector detail' />,
-          }
-        ]
+            element: <Test title="Connector detail" />,
+          },
+        ],
       },
       {
         path: "web-crawlers",
-        element: <div><h1>Web Crawlers</h1><Outlet /></div>,
+        element: (
+          <div>
+            <h1>Web Crawlers</h1>
+            <Outlet />
+          </div>
+        ),
         children: [
           {
             path: ":id",
-            element: <Test title='Web crawler detail' />,
-          }
-        ]
+            element: <Test title="Web crawler detail" />,
+          },
+        ],
       },
       {
         path: "relevance",
-        element: <><Test title="Relevance Overview" /><Outlet /></>,
+        element: (
+          <>
+            <Test title="Relevance Overview" />
+            <Outlet />
+          </>
+        ),
         children: [
           {
             path: "inference-endpoints",
-            element: <Test title='Inference Endpoints' />,
+            element: <Test title="Inference Endpoints" />,
           },
           {
             path: "query-rules",
-            element: <Test title='Query Rules' />,
+            element: <Test title="Query Rules" />,
           },
-        ]
+        ],
       },
       {
         path: "search-applications",
-        element: <h1>Search Applications</h1>
+        element: <h1>Search Applications</h1>,
       },
       {
         path: "behavioral-analytics",
-        element: <h1>Behavioral Analytics</h1>
+        element: <h1>Behavioral Analytics</h1>,
       },
       {
         path: "getting-started",
-        element: <h1>Getting Started</h1>
+        element: <h1>Getting Started</h1>,
       },
     ],
   },
