@@ -1,4 +1,4 @@
-import { useParams, useSearchParams } from "react-router-dom";
+import { Outlet, useParams, useSearchParams } from "react-router-dom";
 
 export const IndexSample = () => {
   const { foo } = useParams();
@@ -11,6 +11,7 @@ export const IndexSample = () => {
   return (
     <div>
       Index Sample {foo} {filled === "true" ? "filled" : "not filled"}
+      <Outlet />
     </div>
   );
 };

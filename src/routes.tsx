@@ -23,8 +23,35 @@ export const Routes = createBrowserRouter([
         element: <IndicesLayout />,
         children: [
           {
-            path: ":id",
+            path: "detail",
             element: <IndexSample />,
+            children: [
+              {
+                path: "overview",
+                element: <h2>Overview</h2>,
+              },
+              {
+                path: "documents",
+                element: <h2>Documents</h2>,
+              },
+              {
+                path: "mappings",
+                element: <h2>Mappings</h2>,
+              },
+              {
+                path: "pipelines",
+                element: <h2>Pipelines</h2>,
+              },
+              {
+                path: "settings",
+                element: <h2>Settings</h2>,
+              },
+
+            ]
+          },
+          {
+            path: "settings",
+            element: <Test title='Settings' />,
           },
           {
             path: "settings",
@@ -37,7 +64,7 @@ export const Routes = createBrowserRouter([
         element: <ConnectorsView />,
         children: [
           {
-            path: ":id",
+            path: "detail",
             element: <Test title='Connector detail' />,
           }
         ]
@@ -47,7 +74,7 @@ export const Routes = createBrowserRouter([
         element: <div><h1>Web Crawlers</h1><Outlet /></div>,
         children: [
           {
-            path: ":id",
+            path: "detail",
             element: <Test title='Web crawler detail' />,
           }
         ]
