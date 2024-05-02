@@ -70,27 +70,6 @@ export const SideNav = () => {
       ],
     },
     {
-      name: "Getting Started",
-      id: "getting-started",
-      items: [
-        {
-          name: "Elasticsearch",
-          id: "gs-elasticsearch",
-          onClick: () => navigate("/"),
-        },
-        {
-          name: "Vector Search",
-          id: "gs-vector-search",
-          onClick: () => navigate("/"),
-        },
-        {
-          name: "AI Search",
-          id: "gs-ai-search",
-          onClick: () => navigate("/"),
-        },
-      ],
-    },
-    {
       name: "Enterprise Search",
       id: "enterprise-search",
       items: [

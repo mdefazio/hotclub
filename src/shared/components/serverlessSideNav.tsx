@@ -63,43 +63,6 @@ export const ServerlessSideNav = () => {
         },
       ],
     },
-    {
-      name: "Getting Started",
-      id: "getting-started",
-      items: [
-        {
-          name: "Elasticsearch",
-          id: "gs-elasticsearch",
-          onClick: () => navigate("/"),
-        },
-        {
-          name: "Vector Search",
-          id: "gs-vector-search",
-          onClick: () => navigate("/"),
-        },
-        {
-          name: "AI Search",
-          id: "gs-ai-search",
-          onClick: () => navigate("/"),
-        },
-      ],
-    },
-    {
-      name: "Enterprise Search",
-      id: "enterprise-search",
-      items: [
-        {
-          name: "App Search",
-          id: "app-search",
-          onClick: () => navigate("/"),
-        },
-        {
-          name: "Workplace Search",
-          id: "workplace-search",
-          onClick: () => navigate("/"),
-        },
-      ],
-    },
   ];
   return (
     <EuiSideNav
