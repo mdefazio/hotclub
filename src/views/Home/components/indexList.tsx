@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import {
   EuiButton,
+  EuiFieldText,
   EuiFlexGroup,
   EuiFlexItem,
   EuiListGroup,
   EuiListGroupItem,
   EuiPanel,
   EuiSpacer,
+  EuiSwitch,
   EuiText,
   EuiTitle,
   useEuiTheme,
@@ -21,6 +23,8 @@ import noDataImage from "../../../assets/noData.png";
 export const IndexList = () => {
   const [indices, setIndices] = useState(MOCK_INDICES);
   const [renderEmptyState, setRenderEmptyState] = useState(false);
+  const [showSystemIndices, setShowSystemIndices] = useState(false);
+  const [filterTerm, setFilterTerm] = useState("");
 
   const { euiTheme } = useEuiTheme();
 
@@ -32,11 +36,29 @@ export const IndexList = () => {
     <EuiPanel hasBorder style={{ width: "100%", position: "relative" }}>
       <EmptyStateToggle
         onClick={() => setRenderEmptyState(!renderEmptyState)}
-        isEmpty={false}
+        isEmpty={renderEmptyState}
       />
-      <EuiTitle size="xs">
-        <EuiText>Indices</EuiText>
-      </EuiTitle>
+      <EuiFlexGroup
+        alignItems="center"
+        justifyContent="spaceBetween"
+        style={{ width: "100%" }}
+      >
+        <EuiFlexItem grow={false}>
+          <EuiTitle size="xs">
+            <EuiText>Indices</EuiText>
+          </EuiTitle>
+        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          <EuiSwitch
+            compressed
+            color="primary"
+            label="Show system indices"
+            checked={showSystemIndices}
+            onChange={() => setShowSystemIndices(!showSystemIndices)}
+          />
+        </EuiFlexItem>
+      </EuiFlexGroup>
+      <EuiSpacer size="l" />
       {renderEmptyState ? (
         <EuiFlexGroup
           direction="column"
@@ -63,11 +85,21 @@ export const IndexList = () => {
         </EuiFlexGroup>
       ) : (
         <>
-          <EuiListGroup style={{ width: "100%" }}>
+          <EuiFlexItem>
+            <EuiFieldText
+              value={filterTerm}
+              onChange={(e: any) => setFilterTerm(e.target.value)}
+              placeholder="Search indices"
+            />
+          </EuiFlexItem>
+          <EuiListGroup flush style={{ width: "100%" }}>
             {indices.map((item, index) => (
               <EuiListGroupItem
                 className="override"
-                style={{ border: `1px solid ${euiTheme.colors.lightShade}` }}
+                style={{
+                  border: `1px solid ${euiTheme.colors.lightShade}`,
+                  borderRadius: ".25rem",
+                }}
                 id={`listGroupItem-Index-${index}`}
                 onClick={() => {}}
                 size="xs"

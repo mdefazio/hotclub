@@ -68,7 +68,7 @@ export const MOCK_METRICS_EMPTY: MetricProps[] = [
   {
     description: "Documents",
     icon: "documents",
-    emptyStateCTALabel: "Add a document",
+    emptyStateCTALabel: "Add documents",
     emptyStateMessage: "Create your first index to start adding documents.",
     metrics: [
       {
