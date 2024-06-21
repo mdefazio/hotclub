@@ -3,6 +3,8 @@ import App from "./App";
 import ConnectorsView from "./views/Connectors/page";
 import { IndexSample } from "./views/Indices/indexSample";
 import { IndicesLayout } from "./views/Indices/layout";
+import Management from "./views/Management/page";
+import AIOps from "./views/Management/ai-ops/page";
 
 const Test = ({ title }: any) => {
 
@@ -104,6 +106,16 @@ export const Routes = createBrowserRouter([
       {
         path: "getting-started",
         element: <h1>Getting Started</h1>
+      },
+      {
+        path: "management",
+        element: <Management />,
+        children: [
+          {
+            path: "ai-ops",
+            element: <AIOps />
+          }
+        ]
       },
     ],
   },
