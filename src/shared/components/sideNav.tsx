@@ -94,12 +94,6 @@ export const SideNav = () => {
       id: "relevance",
       items: [
         {
-          name: "Overview",
-          id: htmlIdGenerator("basicExample")(),
-          isSelected: checkParams("/relevance/overview"),
-          onClick: () => navigate("/relevance/"),
-        },
-        {
           name: "Inference Endpoints",
           id: htmlIdGenerator("basicExample")(),
           isSelected: checkParams("/relevance/inference-endpoints"),

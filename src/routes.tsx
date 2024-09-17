@@ -3,7 +3,6 @@ import App from "./App";
 import ConnectorsView from "./views/Connectors/page";
 import { IndexSample } from "./views/Indices/indexSample";
 import { IndicesLayout } from "./views/Indices/layout";
-import RelevanceView from "./views/Relevance/page";
 
 import InferenceEndpoints from "./views/Relevance/inference-endpoints/page";
 
@@ -80,7 +79,6 @@ export const Routes = createBrowserRouter([
       },
       {
         path: "relevance",
-        element: <RelevanceView />,
         children: [
           {
             path: "inference-endpoints",
