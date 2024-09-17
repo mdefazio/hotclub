@@ -6,9 +6,6 @@ import { IndicesLayout } from "./views/Indices/layout";
 import RelevanceView from "./views/Relevance/page";
 
 import InferenceEndpoints from "./views/Relevance/inference-endpoints/page";
-import JudgementLists from "./views/Relevance/judgement-lists/page";
-import Management from "./views/Management/page";
-import AIOps from "./views/Management/ai-ops/page";
 
 const Test = ({ title }: any) => {
 
@@ -89,10 +86,6 @@ export const Routes = createBrowserRouter([
             path: "inference-endpoints",
             element: <InferenceEndpoints />,
           },
-          {
-            path: "judgement-lists",
-            element: <JudgementLists />,
-          },
         ]
       },
       {
@@ -106,16 +99,6 @@ export const Routes = createBrowserRouter([
       {
         path: "getting-started",
         element: <h1>Getting Started</h1>
-      },
-      {
-        path: "management",
-        element: <Management />,
-        children: [
-          {
-            path: "ai-ops",
-            element: <AIOps />
-          }
-        ]
       },
     ],
   },

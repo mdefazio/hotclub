@@ -105,12 +105,6 @@ export const SideNav = () => {
           isSelected: checkParams("/relevance/inference-endpoints"),
           onClick: () => navigate("/relevance/inference-endpoints"),
         },
-        {
-          name: "Judgement lists",
-          id: htmlIdGenerator("basicExample")(),
-          isSelected: checkParams("/relevance/judgement-lists"),
-          onClick: () => navigate("/relevance/judgement-lists"),
-        },
       ],
     },
     {
