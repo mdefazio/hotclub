@@ -3,6 +3,10 @@ import App from "./App";
 import ConnectorsView from "./views/Connectors/page";
 import { IndexSample } from "./views/Indices/indexSample";
 import { IndicesLayout } from "./views/Indices/layout";
+import RelevanceView from "./views/Relevance/page";
+
+import InferenceEndpoints from "./views/Relevance/inference-endpoints/page";
+import JudgementLists from "./views/Relevance/judgement-lists/page";
 import Management from "./views/Management/page";
 import AIOps from "./views/Management/ai-ops/page";
 
@@ -55,10 +59,6 @@ export const Routes = createBrowserRouter([
             path: "settings",
             element: <Test title='Settings' />,
           },
-          {
-            path: "settings",
-            element: <Test title='Settings' />,
-          },
         ],
       },
       {
@@ -72,7 +72,7 @@ export const Routes = createBrowserRouter([
         ]
       },
       {
-        path: "web-crawlers",
+        path: "crawlers",
         element: <div><h1>Web Crawlers</h1><Outlet /></div>,
         children: [
           {
@@ -83,15 +83,15 @@ export const Routes = createBrowserRouter([
       },
       {
         path: "relevance",
-        element: <><Test title="Relevance Overview" /><Outlet /></>,
+        element: <RelevanceView />,
         children: [
           {
             path: "inference-endpoints",
-            element: <Test title='Inference Endpoints' />,
+            element: <InferenceEndpoints />,
           },
           {
-            path: "query-rules",
-            element: <Test title='Query Rules' />,
+            path: "judgement-lists",
+            element: <JudgementLists />,
           },
         ]
       },

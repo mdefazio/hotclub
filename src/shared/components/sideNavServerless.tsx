@@ -1,17 +1,30 @@
+import React, { useState } from 'react';
 import { useNavigate, useLocation } from "react-router-dom";
 
 import {
+  EuiAccordion,
   EuiSideNav,
   EuiFlexGroup,
   EuiFlexItem,
   EuiIcon,
   EuiTitle,
   htmlIdGenerator,
+  EuiListGroup,
+  EuiListGroupItem,
+  EuiCollapsibleNavGroup,
+  EuiCollapsibleNavBeta,
+  EuiPinnableListGroupItemProps,
+  EuiCollapsibleNav,
+  EuiPinnableListGroup,
+  EuiPanel,
+  EuiSpacer,
 } from "@elastic/eui";
 
-export const SideNav = () => {
+
+export const SideNavServerless = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const [navIsOpen, setNavIsOpen] = useState(true)
 
   const checkParams = (path: string) => {
     return location.pathname?.includes(path);
@@ -90,30 +103,6 @@ export const SideNav = () => {
       ],
     },
     {
-      name: "Relevance",
-      id: "relevance",
-      items: [
-        {
-          name: "Overview",
-          id: htmlIdGenerator("basicExample")(),
-          isSelected: checkParams("/relevance/overview"),
-          onClick: () => navigate("/relevance/"),
-        },
-        {
-          name: "Inference Endpoints",
-          id: htmlIdGenerator("basicExample")(),
-          isSelected: checkParams("/relevance/inference-endpoints"),
-          onClick: () => navigate("/relevance/inference-endpoints"),
-        },
-        {
-          name: "Judgement lists",
-          id: htmlIdGenerator("basicExample")(),
-          isSelected: checkParams("/relevance/judgement-lists"),
-          onClick: () => navigate("/relevance/judgement-lists"),
-        },
-      ],
-    },
-    {
       name: "Enterprise Search",
       id: "enterprise-search",
       items: [
@@ -130,23 +119,9 @@ export const SideNav = () => {
       ],
     },
   ];
-
   return (
-    <EuiSideNav
-      items={sideNavItems}
-      aria-label="Left nav"
-      heading={
-        <EuiFlexGroup alignItems="center" gutterSize="m">
-          <EuiFlexItem grow={false}>
-            <EuiIcon type="logoElasticsearch" />
-          </EuiFlexItem>
-          <EuiFlexItem>
-            <EuiTitle size="xs">
-              <h2>Search</h2>
-            </EuiTitle>
-          </EuiFlexItem>
-        </EuiFlexGroup>
-      }
-    />
-  );
-};
+    <EuiCollapsibleNavBeta>
+
+    </EuiCollapsibleNavBeta>
+  )
+}

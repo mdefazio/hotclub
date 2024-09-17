@@ -1,6 +1,7 @@
 import React from "react";
 import { EuiHeader, EuiPageTemplate, EuiHeaderLogo } from "@elastic/eui";
 
+import { SideNavServerless } from "./sideNavServerless";
 import { SideNav } from "./sideNav";
 
 interface PageWrapperProps {
@@ -8,20 +9,21 @@ interface PageWrapperProps {
 }
 export const PageWrapper = ({ children }: PageWrapperProps) => (
   <>
-    <EuiHeader
-      theme="dark"
-      sections={[
-        {
-          items: [<EuiHeaderLogo key="elastic">Elastic</EuiHeaderLogo>],
-        },
-      ]}
-    />
-    <EuiHeader />
     <EuiPageTemplate restrictWidth={false} panelled={true}>
-      <EuiPageTemplate.Sidebar sticky>
-        <SideNav />
+      <EuiHeader
+        position="fixed"
+        sections={[
+          {
+            items: [<EuiHeaderLogo key="elastic">Elastic</EuiHeaderLogo>],
+          },
+        ]}
+      />
+      <EuiPageTemplate.Sidebar>
+        <SideNav/>
       </EuiPageTemplate.Sidebar>
-      <div style={{ padding: "2rem" }}>{children}</div>
+      <EuiPageTemplate.Section>
+        {children}
+      </EuiPageTemplate.Section>
     </EuiPageTemplate>
   </>
 );
