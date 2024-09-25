@@ -2,7 +2,7 @@ import { RootLayout } from "./shared/components";
 import { Outlet, useLocation } from "react-router-dom";
 
 import "@elastic/eui/dist/eui_theme_light.css";
-import "@elastic/eui/dist/eui_theme_dark.css";
+// import "@elastic/eui/dist/eui_theme_dark.css";
 import { EuiProvider } from "@elastic/eui";
 import { HomeView } from "./views";
 

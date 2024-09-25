@@ -4,7 +4,11 @@ import ConnectorsView from "./views/Connectors/page";
 import { IndexSample } from "./views/Indices/indexSample";
 import { IndicesLayout } from "./views/Indices/layout";
 
-import InferenceEndpoints from "./views/Relevance/inference-endpoints/page";
+import InferenceEndpoints from "./views/Relevance/InferenceEndpoints/page";
+import Synonyms from "./views/Relevance/Synonyms/page";
+import QueryRules from "./views/Relevance/QueryRules/page";
+import { QueryRuleDetail } from "./views/Relevance/QueryRules/detail";
+
 
 const Test = ({ title }: any) => {
 
@@ -83,6 +87,18 @@ export const Routes = createBrowserRouter([
           {
             path: "inference-endpoints",
             element: <InferenceEndpoints />,
+          },
+          {
+            path: "query-rules",
+            element: <QueryRules />,
+          },
+          {
+            path: "query-rule-detail",
+            element: <QueryRuleDetail />
+          },
+          {
+            path: "synonyms",
+            element: <Synonyms />,
           },
         ]
       },

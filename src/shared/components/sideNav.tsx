@@ -99,6 +99,18 @@ export const SideNav = () => {
           isSelected: checkParams("/relevance/inference-endpoints"),
           onClick: () => navigate("/relevance/inference-endpoints"),
         },
+        {
+          name: "Query Rules",
+          id: htmlIdGenerator("basicExample")(),
+          isSelected: checkParams("/relevance/query-rules"),
+          onClick: () => navigate("/relevance/query-rules"),
+        },
+        {
+          name: "Synonyms",
+          id: htmlIdGenerator("basicExample")(),
+          isSelected: checkParams("/relevance/synonyms"),
+          onClick: () => navigate("/relevance/synonyms"),
+        },
       ],
     },
     {

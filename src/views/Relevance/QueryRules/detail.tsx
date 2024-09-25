@@ -11,7 +11,6 @@ import {
 import { useState } from 'react';
 
 import { useNavigate } from 'react-router-dom';
-import { QueryRuleLeftNav } from './components/QueryRuleLeftNav';
 
 export const QueryRuleDetail = () => {
   const [hasChanges, setHasChanges] = useState(true);
@@ -80,7 +79,7 @@ export const QueryRuleDetail = () => {
           grow={0}
           style={{ minWidth: '270px' }}
         >
-          <QueryRuleLeftNav />
+          Left side
         </EuiFlexItem>
         <EuiFlexItem grow>Form</EuiFlexItem>
       </EuiFlexGroup>

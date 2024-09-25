@@ -28,7 +28,7 @@ for (let i = 0; i < 4; i++) {
 }
 
 
-export const QueryRulesView = () => {
+export default function QueryRules() {
   const navigate = useNavigate()
 
   const columns: Array<EuiBasicTableColumn<Ruleset>> = [
