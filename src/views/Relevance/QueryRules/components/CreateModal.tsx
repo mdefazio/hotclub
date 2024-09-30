@@ -18,7 +18,7 @@ export const CreateModal = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   const navigate = useNavigate();
-  const closeModal = () => (navigate('/relevance/query-rule-detail'));
+  const closeModal = () => (navigate('/relevance/query-rules/query-rule-detail'));
   const showModal = () => setIsModalVisible(true);
 
   const modalTitleId = useGeneratedHtmlId();

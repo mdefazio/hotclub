@@ -2,9 +2,12 @@ import {
   EuiButton,
   EuiButtonEmpty,
   EuiButtonIcon,
+  EuiFieldSearch,
   EuiFlexGroup,
   EuiFlexItem,
   EuiIcon,
+  EuiPanel,
+  EuiPageBody,
   EuiPageHeader,
   EuiSpacer,
 } from '@elastic/eui';
@@ -34,6 +37,7 @@ export const QueryRuleDetail = () => {
       <EuiPageHeader
         pageTitle='My new query rule'
         description='Create and manage your query rules'
+        restrictWidth
         rightSideGroupProps={{
           gutterSize: "s"
         }}
@@ -73,16 +77,26 @@ export const QueryRuleDetail = () => {
         ]}
         bottomBorder
       />
-      <EuiSpacer />
-      <EuiFlexGroup gutterSize='xl'>
-        <EuiFlexItem
-          grow={0}
-          style={{ minWidth: '270px' }}
-        >
-          Left side
-        </EuiFlexItem>
-        <EuiFlexItem grow>Form</EuiFlexItem>
-      </EuiFlexGroup>
+      <EuiPageBody paddingSize="none" restrictWidth>
+        <EuiSpacer />
+        <EuiFlexGroup alignItems='center' justifyContent='spaceBetween'>
+          <EuiFlexItem grow={false}>
+            <span>
+              <EuiButton
+                iconSide='left'
+                iconType="plusInCircle"
+              >Add rule</EuiButton>
+            </span>
+          </EuiFlexItem>
+          <EuiFlexItem grow={false}>
+            <EuiFieldSearch />
+          </EuiFlexItem>
+        </EuiFlexGroup>
+        <EuiSpacer />
+        <EuiPanel color='plain' hasShadow>
+          Form
+        </EuiPanel>
+      </EuiPageBody>
     </>
   )
 
