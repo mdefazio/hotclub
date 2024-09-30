@@ -94,7 +94,7 @@ export const QueryRuleDetail = () => {
         </EuiFlexGroup>
         <EuiSpacer />
         <EuiPanel color='plain' hasShadow>
-          Form
+          Form goes here
         </EuiPanel>
       </EuiPageBody>
     </>
