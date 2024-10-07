@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { ActionFunction, useLoaderData } from 'react-router-dom';
+
 import {
   EuiBasicTable,
   EuiButton,
@@ -9,27 +11,36 @@ import {
   EuiSearchBar
 } from "@elastic/eui";
 
-import { faker } from '@faker-js/faker';
-import { useNavigate } from "react-router-dom";
+import { getQueryRules, createQueryRule, updateRuleSet } from '../../../shared/data/queryrules';
+
+import { useNavigate, redirect } from "react-router-dom";
 import { CreateModal } from './components/CreateModal';
 
 type Ruleset = {
   id: string;
-  rule_total_count: number;
 };
 
-const rulesets: Ruleset[] = [];
 
-for (let i = 0; i < 4; i++) {
-  rulesets.push({
-    id: faker.string.uuid(),
-    rule_total_count: faker.number.int(50),
-  });
+// This gets applied at the route level
+export async function loader() {
+  const queryRules = await getQueryRules();
+  return { queryRules };
 }
 
 
+
+export const action: ActionFunction = async ({ request, params }) => {
+  const rule_set = await createQueryRule();
+  const formData = await request.formData();
+  const updates = Object.fromEntries(formData);
+  await updateRuleSet(params.id, updates);
+  // return redirect(`/query-rules/${params.id}`);
+  return { rule_set };
+}
+
 export default function QueryRules() {
   const navigate = useNavigate()
+  const { queryRules }: any = useLoaderData();
 
   const columns: Array<EuiBasicTableColumn<Ruleset>> = [
     {
@@ -66,7 +77,7 @@ export default function QueryRules() {
 
       <EuiBasicTable
         columns={columns}
-        items={[]}
+        items={queryRules}
       />
     </>
   )

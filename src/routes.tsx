@@ -7,9 +7,13 @@ import { IndicesLayout } from "./views/Indices/layout";
 import InferenceEndpoints from "./views/Relevance/InferenceEndpoints/page";
 import Synonyms from "./views/Relevance/Synonyms/page";
 import QueryRules from "./views/Relevance/QueryRules/page";
-import { QueryRuleDetail } from "./views/Relevance/QueryRules/detail";
+import QueryRuleDetail from "./views/Relevance/QueryRules/detail";
 import QueryRulesIndex from "./views/Relevance/QueryRules/index-page";
 
+import {
+  loader as queryRuleLoader,
+  action as queryRuleAction,
+} from "./views/Relevance/QueryRules/page";
 
 const Test = ({ title }: any) => {
 
@@ -95,10 +99,16 @@ export const Routes = createBrowserRouter([
             children: [
               {
                 index: true,
-                element: <QueryRules />
+                element: <QueryRules />,
+                loader: queryRuleLoader,
+                action: queryRuleAction,
               },
               {
-                path: "query-rule-detail",
+                path: "query-rules/:ruleSetID",
+                element: <QueryRuleDetail />
+              },
+              {
+                path: "detail",
                 element: <QueryRuleDetail />
               },
             ]
