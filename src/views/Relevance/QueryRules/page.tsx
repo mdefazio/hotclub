@@ -1,5 +1,10 @@
 import React, { useState } from 'react';
-import { ActionFunction, useLoaderData } from 'react-router-dom';
+import {
+  ActionFunction,
+  useLoaderData,
+  useNavigate,
+  redirect
+} from 'react-router-dom';
 
 import {
   EuiBasicTable,
@@ -8,51 +13,52 @@ import {
   EuiPageHeader,
   EuiBasicTableColumn,
   EuiSpacer,
-  EuiSearchBar
+  EuiSearchBar,
+  EuiLink
 } from "@elastic/eui";
 
-import { getQueryRules, createQueryRule, updateRuleSet } from '../../../shared/data/queryrules';
-
-import { useNavigate, redirect } from "react-router-dom";
 import { CreateModal } from './components/CreateModal';
 
 type Ruleset = {
-  id: string;
-};
-
-
-// This gets applied at the route level
-export async function loader() {
-  const queryRules = await getQueryRules();
-  return { queryRules };
+  id: string,
+  rule_total_count: number
 }
 
-
-
-export const action: ActionFunction = async ({ request, params }) => {
-  const rule_set = await createQueryRule();
-  const formData = await request.formData();
-  const updates = Object.fromEntries(formData);
-  await updateRuleSet(params.id, updates);
-  // return redirect(`/query-rules/${params.id}`);
-  return { rule_set };
-}
+const RULESET_LIST = [
+  {
+    id: "alpha",
+    rule_total_count: 0
+  },
+  {
+    id: "beta",
+    rule_total_count: 0
+  },
+  {
+    id: "charlie",
+    rule_total_count: 0
+  }
+]
 
 export default function QueryRules() {
   const navigate = useNavigate()
-  const { queryRules }: any = useLoaderData();
+  // const { queryRules }: any = useLoaderData();
 
   const columns: Array<EuiBasicTableColumn<Ruleset>> = [
     {
       field: 'id',
       name: 'Ruleset',
       'data-test-subj': 'rulesetIDCell',
+      render: ((id: Ruleset["id"]) => (
+        <EuiLink onClick={() => navigate('./detail')}>{id}</EuiLink>
+      ))
     },
     {
       field: 'rule_total_count',
       name: "Rules"
     }
   ]
+
+  const items = RULESET_LIST;
 
   return (
     <>
@@ -77,8 +83,9 @@ export default function QueryRules() {
 
       <EuiBasicTable
         columns={columns}
-        items={queryRules}
+        items={items}
       />
     </>
   )
 }
+

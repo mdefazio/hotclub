@@ -18,7 +18,7 @@ export const CreateModal = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   const navigate = useNavigate();
-  const closeModal = () => (navigate('/relevance/query-rules/query-rule-detail'));
+  const closeModal = () => navigate('/relevance/query-rules/detail');
   const showModal = () => setIsModalVisible(true);
 
   const modalTitleId = useGeneratedHtmlId();
@@ -44,19 +44,17 @@ export const CreateModal = () => {
           </EuiModalHeader>
 
           <EuiModalBody>
-            <Form method='post'>
-              <EuiForm>
-                <EuiFormRow label="Name">
-                  <EuiFieldText
-                    value="My new query rule"
-                    name="id"
-                  />
-                </EuiFormRow>
-                <EuiButton type="submit" fill>
-                  Save
-                </EuiButton>
-              </EuiForm>
-            </Form>
+            <EuiForm>
+              <EuiFormRow label="Name">
+                <EuiFieldText
+                  placeholder='My new query rule'
+                  name="id"
+                />
+              </EuiFormRow>
+              <EuiButton fill onClick={closeModal}>
+                Save
+              </EuiButton>
+            </EuiForm>
           </EuiModalBody>
 
         </EuiModal>

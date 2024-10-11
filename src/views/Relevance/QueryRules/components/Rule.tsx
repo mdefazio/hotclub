@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import {
   EuiAccordion,
+  EuiBadge,
   EuiButton,
   EuiButtonIcon,
+  EuiCode,
   EuiFlexGroup,
   EuiFlexItem,
   EuiIcon,
@@ -73,20 +75,9 @@ export default function Rule({ data, ...props }: { data: RuleProps }) {
 
   const extraAction = (
     <>
-      <EuiButtonIcon
-        aria-label="accordion-menu"
-        display='empty'
-        color='danger'
-        iconType="trash"
-        size='s'
-      />
-      <EuiButtonIcon
-        aria-label="accordion-menu"
-        display='empty'
-        color='text'
-        iconType="boxesHorizontal"
-        size='s'
-      />
+      {!isActive &&
+        <EuiBadge color='default'>contains</EuiBadge>
+      }
     </>
   )
 
@@ -100,10 +91,10 @@ export default function Rule({ data, ...props }: { data: RuleProps }) {
       <EuiAccordion
         id={ruleAccordionId}
         buttonContent={data.ruleId}
-        // extraAction={extraAction}
+        extraAction={extraAction}
         paddingSize="none"
         onToggle={onToggle}
-        arrowDisplay="none"
+        arrowDisplay="left"
       >
         <EuiSpacer size="s" />
         <EuiFlexGroup

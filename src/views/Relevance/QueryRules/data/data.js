@@ -21,3 +21,24 @@ export const ACTION_TYPES = [
     text: "Exclude documents"
   }
 ]
+
+export const RULESET_DATA = {
+  ruleset_id: "my new rule query",
+  indices_assigned: [],
+  rule_list: [
+    {
+      "ruleId": "first_rule",
+      "criteria": ["match", "fuzzy"]
+    },
+    {
+      "ruleId": "second_rule",
+      "criteria": ["always"],
+    },
+    {
+      "ruleId": "third_rule",
+      "criteria": ["match"],
+
+    }
+  ]
+}
+

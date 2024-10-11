@@ -10,7 +10,7 @@ export async function getQueryRules(query) {
   if (query) {
     queryRules = matchSorter(queryRules, query, { keys: ["rule_id"] });
   }
-  return queryRules.sort(sortBy("rule_id"));
+  return queryRules.sort(sortBy("id"));
 }
 
 // Create query rule
@@ -22,6 +22,7 @@ export async function createQueryRule() {
   let queryRules = await getQueryRules();
   queryRules.unshift(rule_set);
   await set(queryRules);
+
   return rule_set;
 }
 

@@ -1,5 +1,6 @@
 import { createBrowserRouter, Outlet, useParams } from "react-router-dom";
 import App from "./App";
+import ErrorPage from "./errorPage";
 import ConnectorsView from "./views/Connectors/page";
 import { IndexSample } from "./views/Indices/indexSample";
 import { IndicesLayout } from "./views/Indices/layout";
@@ -9,11 +10,6 @@ import Synonyms from "./views/Relevance/Synonyms/page";
 import QueryRules from "./views/Relevance/QueryRules/page";
 import QueryRuleDetail from "./views/Relevance/QueryRules/detail";
 import QueryRulesIndex from "./views/Relevance/QueryRules/index-page";
-
-import {
-  loader as queryRuleLoader,
-  action as queryRuleAction,
-} from "./views/Relevance/QueryRules/page";
 
 const Test = ({ title }: any) => {
 
@@ -28,6 +24,7 @@ export const Routes = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "indices",
@@ -95,16 +92,13 @@ export const Routes = createBrowserRouter([
           },
           {
             path: "query-rules",
-            element: <QueryRulesIndex />,
             children: [
               {
                 index: true,
                 element: <QueryRules />,
-                loader: queryRuleLoader,
-                action: queryRuleAction,
               },
               {
-                path: "query-rules/:ruleSetID",
+                path: "query-rules/:id",
                 element: <QueryRuleDetail />
               },
               {
