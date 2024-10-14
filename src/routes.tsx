@@ -97,10 +97,10 @@ export const Routes = createBrowserRouter([
                 index: true,
                 element: <QueryRules />,
               },
-              {
-                path: "query-rules/:id",
-                element: <QueryRuleDetail />
-              },
+              // {
+              //   path: "query-rules/:id",
+              //   element: <QueryRuleDetail />
+              // },
               {
                 path: "detail",
                 element: <QueryRuleDetail />
