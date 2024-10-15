@@ -143,7 +143,7 @@ export default function QueryRuleDetail() {
         <EuiFlexGroup direction='column' gutterSize='s'>
 
           <EuiDragDropContext onDragEnd={onDragEnd}>
-            <EuiPanel color='subdued' paddingSize="s">
+            <EuiPanel color='plain' paddingSize="s" hasShadow={false} hasBorder>
               <EuiDroppable droppableId='RULE_LIST' spacing='none'>
                 {ruleList.map((rule, index) => (
                   <EuiDraggable
@@ -155,7 +155,7 @@ export default function QueryRuleDetail() {
                   // hasInteractiveChildren={true}
                   >
                     {(provided) => (
-                      <EuiPanel color="plain" hasBorder={false} hasShadow={false} paddingSize='xs'>
+                      <EuiPanel color="plain" hasBorder={true} hasShadow={false} paddingSize='xs'>
                         <EuiFlexGroup gutterSize='s' alignItems='center'>
                           <EuiFlexItem grow={false}>
                             <EuiPanel
@@ -169,18 +169,6 @@ export default function QueryRuleDetail() {
                           </EuiFlexItem>
                           <EuiFlexItem>
                             <Rule data={rule} />
-                          </EuiFlexItem>
-
-                          {/*   </EuiFlexGroup> */}
-                          {/* </EuiPanel> */}
-                          <EuiFlexItem grow={false}>
-                            <EuiButtonIcon
-                              size='m'
-                              display="empty"
-                              color="danger"
-                              iconType='trash'
-                              onClick={handleDelete}
-                            />
                           </EuiFlexItem>
                         </EuiFlexGroup>
                       </EuiPanel>

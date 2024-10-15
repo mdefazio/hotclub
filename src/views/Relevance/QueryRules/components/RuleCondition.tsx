@@ -22,7 +22,7 @@ const RuleCondition = ({ type }: RuleConditionProps) => {
   ))
 
   return (
-    <EuiPanel color="plain" hasBorder paddingSize="m">
+    <EuiPanel color="plain" hasBorder={false} hasShadow={false} paddingSize="m">
       <EuiFlexGroup gutterSize="s" direction="column">
         <EuiFlexGroup>
           <EuiFlexItem>
@@ -44,16 +44,16 @@ const RuleCondition = ({ type }: RuleConditionProps) => {
               <EuiSelect value={""} options={options} />
             </EuiFormRow>
           </EuiFlexItem>
-          {/* <EuiFlexItem grow={false}> */}
-          {/*   <EuiFormRow hasEmptyLabelSpace> */}
-          {/*     <EuiButtonIcon */}
-          {/*       display="empty" */}
-          {/*       size="m" */}
-          {/*       iconType="trash" */}
-          {/*       color="danger" */}
-          {/*     /> */}
-          {/*   </EuiFormRow> */}
-          {/* </EuiFlexItem> */}
+          <EuiFlexItem grow={false}>
+            <EuiFormRow hasEmptyLabelSpace>
+              <EuiButtonIcon
+                display="empty"
+                size="m"
+                iconType="trash"
+                color="danger"
+              />
+            </EuiFormRow>
+          </EuiFlexItem>
         </EuiFlexGroup>
         <EuiFlexGroup>
           <EuiFlexItem>

@@ -3,11 +3,12 @@ import {
   EuiAccordion,
   EuiBadge,
   EuiButton,
+  EuiButtonEmpty,
   EuiButtonIcon,
-  EuiCode,
+  EuiFieldText,
   EuiFlexGroup,
   EuiFlexItem,
-  EuiIcon,
+  EuiForm,
   EuiPanel,
   EuiSelect,
   EuiSpacer,
@@ -74,11 +75,26 @@ export default function Rule({ data, ...props }: { data: RuleProps }) {
   const ruleAccordionId = useGeneratedHtmlId({ prefix: "rule" })
 
   const extraAction = (
-    <>
-      {!isActive &&
-        <EuiBadge color='default'>contains</EuiBadge>
-      }
-    </>
+    <EuiButtonIcon iconType='trash' color='danger' size='m' display='empty' />
+  )
+
+  const buttonContent = (
+    <EuiFlexGroup direction='row' gutterSize='m' alignItems='center'>
+      <EuiFlexItem>
+        <EuiForm>
+          <EuiFieldText value={data.ruleId} />
+        </EuiForm>
+      </EuiFlexItem>
+      <EuiFlexItem grow={false}>
+        {!isActive &&
+          <EuiText size='s' color='subdued'>
+            <p>
+              field_name_here contains
+            </p>
+          </EuiText>
+        }
+      </EuiFlexItem>
+    </EuiFlexGroup>
   )
 
   const onToggle = (isOpen: boolean) => {
@@ -87,10 +103,10 @@ export default function Rule({ data, ...props }: { data: RuleProps }) {
 
 
   return (
-    <EuiPanel paddingSize='m' color={isActive ? 'plain' : 'transparent'} hasBorder={false} hasShadow={false}>
+    <EuiPanel paddingSize='m' color={isActive ? 'subdued' : 'transparent'} hasBorder={false} hasShadow={false}>
       <EuiAccordion
         id={ruleAccordionId}
-        buttonContent={data.ruleId}
+        buttonContent={buttonContent}
         extraAction={extraAction}
         paddingSize="none"
         onToggle={onToggle}
@@ -112,6 +128,9 @@ export default function Rule({ data, ...props }: { data: RuleProps }) {
               {data.criteria.map((crit: string, index: number) => (
                 <RuleCondition type={crit} />
               ))}
+              {data.criteria.length !== 0 &&
+                <EuiButtonEmpty color="text" iconSide='left' iconType='plusInCircle'>And</EuiButtonEmpty>
+              }
             </EuiFlexGroup>
           </EuiFlexItem>
           <EuiFlexItem>
