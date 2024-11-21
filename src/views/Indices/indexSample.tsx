@@ -6,12 +6,13 @@ export const IndexSample = () => {
   const filled = urlSearchParams.get("filled");
 
   console.log(foo);
-  console.log(urlSearchParams.get("your-mom"));
+  const mom = urlSearchParams.get("your-mom");
 
   return (
     <div>
-      Index Sample {foo} {filled === "true" ? "filled" : "not filled"}
+      <h2>Start</h2>
       <Outlet />
+      <h3>End</h3>
     </div>
   );
 };

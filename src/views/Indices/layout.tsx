@@ -37,12 +37,6 @@ export const IndicesLayout = () => {
             onClick: () => handleClick("/mappings"),
           },
           {
-            id: "pipelines",
-            label: "Pipelines",
-            isSelected: checkPathname("pipelines"),
-            onClick: () => handleClick("/pipelines"),
-          },
-          {
             id: "settings",
             label: "Settings",
             isSelected: checkPathname("settings"),
