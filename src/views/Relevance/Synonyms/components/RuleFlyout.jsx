@@ -20,8 +20,8 @@ import {
 
 import { TermsList } from "./TermsList";
 
-export const RuleFlyout = ({ closeFlyout, id }) => {
-  const [options, setOptions] = useState([]);
+export const RuleFlyout = ({ closeFlyout, rule }) => {
+  const [options, setOptions] = useState(rule.terms);
   const [isInvalid, setInvalid] = useState(false);
   const [isSaved, setIsSaved] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
@@ -98,7 +98,7 @@ export const RuleFlyout = ({ closeFlyout, id }) => {
           <EuiFlexItem grow={false}>
             <EuiText size="s" color="subdued">
               <p>
-                Rule ID: <strong>rule_27cjk2-2kM</strong>
+                Rule ID: <strong>{rule.id}</strong>
               </p>
             </EuiText>
           </EuiFlexItem>

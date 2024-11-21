@@ -22,6 +22,7 @@ const CustomBadge = ({ label, removeItem }) => (
 );
 
 export const TermsList = ({ items, removeItem }) => {
+
   return (
     <EuiFlexGroup
       direction="column"
@@ -40,7 +41,7 @@ export const TermsList = ({ items, removeItem }) => {
             iconOnClick={() => removeItem(opt)}
             iconOnClickAriaLabel="remove"
           >
-            {opt}{" "}
+            {opt.toLowerCase()}{" "}
           </EuiBadge>
         </span>
       ))}

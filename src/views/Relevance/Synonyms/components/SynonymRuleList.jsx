@@ -1,76 +1,49 @@
-import React, { useState, useCallback } from "react";
+import { useState } from "react";
 import {
-  EuiButtonIcon,
   EuiFlexGroup,
-  EuiFlexItem,
   EuiPanel,
-  EuiSpacer,
 } from "@elastic/eui";
-import { Flyout, RuleFlyout } from "./RuleFlyout";
 
-const SynonymRule = ({ rule }) => {
-  return (
-    <EuiFlexGroup>
-      <EuiFlexItem grow={false}>
-        <EuiButtonIcon
-          color="text"
-          display="base"
-          iconType="expand"
-          size="m"
-        />
-      </EuiFlexItem>
-      {rule.terms.toString()}
-      <EuiFlexItem grow={false}>
-        <EuiButtonIcon
-          color="danger"
-          display="empty"
-          iconType="trash"
-          onClick={() => ""}
-          size="m"
-        />
-      </EuiFlexItem>
-    </EuiFlexGroup>
-  );
-};
-
-// const terms = [
-//   {
-//     terms: [],
-//     explicitTerm: ''
-//   }
-// ]
+import { RuleFlyout } from "./RuleFlyout";
+import { SYNONYM_RULES } from "../data/data";
+import { SynonymRule } from "./SynonymRule";
 
 export const SynonymRuleList = () => {
-  const [terms, setTerms] = useState([]);
-  const [showEquiv, setShowEquiv] = useState(false);
-  const [showExplicit, setShowExplicit] = useState(false);
+  const [rules, setRules] = useState(SYNONYM_RULES);
+  const [viewRule, setViewRule] = useState(null);
   const [isFlyoutVisible, setIsFlyoutVisible] = useState(false);
 
   const closeFlyout = (terms) => {
-    updateTerms(terms);
+    // updateTerms(terms);
     setIsFlyoutVisible(false);
   };
 
-  const updateTerms = (newTerms, index) => {
-    const newArray = [...terms];
-    newArray[index] = newTerms;
-    setTerms(newArray);
-  };
+  const openFlyout = (id) => {
+    console.log('hit')
+    const rule = rules.find(r => r.id === id);
+    console.log(rule);
+    setViewRule(rule);
+    setIsFlyoutVisible(true)
+  }
+
+
+
+
+
+  // const updateTerms = (newTerms, index) => {
+  //   const newArray = [...terms];
+  //   newArray[index] = newTerms;
+  //   setTerms(newArray);
+  // };
 
   return (
     <EuiPanel paddingSize="s" color="transparent">
       <EuiFlexGroup direction="column" gutterSize="s">
-        {/* 
-        List of Synonym Rules
-        - Within each there is:
-        - - Expand option (open flyout)
-        - - Delete Row (removes row from RulesArray)
-        - - Terms display (comma separated terms array)
-         */}
+        {rules.map((rule) => (
+          <SynonymRule key={rule.id} rule={rule} expandAction={openFlyout} />
+        ))}
       </EuiFlexGroup>
-
-      <EuiSpacer />
-      {isFlyoutVisible && <RuleFlyout closeFlyout={closeFlyout} />}
+      {isFlyoutVisible && <RuleFlyout rule={viewRule} closeFlyout={closeFlyout} />}
     </EuiPanel>
   );
 };
