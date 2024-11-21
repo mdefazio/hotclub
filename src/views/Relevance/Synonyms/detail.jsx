@@ -1,19 +1,16 @@
 import {
-  EuiButton,
-  EuiButtonEmpty,
   EuiButtonIcon,
   EuiFlexGroup,
-  EuiFlexItem,
   EuiIcon,
-  EuiPageBody,
   EuiPageHeader,
   EuiPanel,
-  EuiSearchBar,
   EuiSpacer,
 } from '@elastic/eui';
 import { useState } from 'react';
 
 import { useNavigate } from 'react-router-dom';
+import { SynonymRuleList } from './components/SynonymRuleList';
+
 
 export default function SynonymSetDetail() {
 
@@ -45,7 +42,7 @@ export default function SynonymSetDetail() {
       />
 
       <EuiSpacer />
-
+      <SynonymRuleList />
     </>
   )
 }
