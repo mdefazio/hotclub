@@ -1,150 +1,68 @@
 import React, { useState } from 'react'
 import {
-  EuiAccordion,
   EuiBadge,
-  EuiButton,
-  EuiButtonEmpty,
   EuiButtonIcon,
-  EuiFieldText,
+  EuiExpression,
   EuiFlexGroup,
   EuiFlexItem,
-  EuiForm,
   EuiPanel,
-  EuiSelect,
-  EuiSpacer,
+  EuiCode,
   EuiText,
-  useGeneratedHtmlId
+  EuiDescriptionList,
+  EuiDescriptionListDescription,
+  EuiDescriptionListTitle,
+  useEuiTheme,
+  useEuiFontSize,
 } from '@elastic/eui';
-import RuleCondition from './RuleCondition';
 
-import { ACTION_TYPES } from '../data/data';
+import { css } from "@emotion/css";
 
-interface EmptyStateProps {
-  text: string,
-  href?: string,
-  label: string
-}
+import { RuleType } from '../data/types';
 
 interface RuleProps {
-  "ruleId": string,
-  "criteria": Array<string>
+  rule: RuleType,
+  showRule: any,
 }
 
-const EmptyState = ({ text, href, label }: EmptyStateProps) => {
-
+export default function Rule({ rule, showRule, ...props }: RuleProps) {
+  const { euiTheme } = useEuiTheme();
   return (
-    <EuiPanel color='subdued' paddingSize='m'>
-      <EuiText textAlign='center' size='s'>
-        <p>{text}</p>
-        <EuiButton
-          color='text'
-          iconType="plusInCircle"
-          iconSide='left'
-        >
-          {label}
-        </EuiButton>
-      </EuiText>
-    </EuiPanel>
-  )
-}
+    <EuiFlexGroup
+      gutterSize='m'
+      justifyContent='flexStart'
+      alignItems='center'
+    >
+      <EuiFlexItem grow={true}>
+        {rule.criteria.map((crit, index) => (
+          <div>
+            <EuiBadge color={euiTheme.colors.lightestShade} >{crit.metadata}</EuiBadge>
+            <EuiExpression
+              key={index}
+              description={crit.type}
+              value={crit.values.join(', ')}
+              uppercase={false}
+              color="primary"
+              style={{ marginLeft: euiTheme.size.s }}
+            />
+          </div>
+        ))}
+      </EuiFlexItem>
 
-const ActionType = () => {
-  const options = ACTION_TYPES
-  const [value, setValue] = useState(options[1].value);
-  const actionSelectId = useGeneratedHtmlId({ prefix: 'basicSelect' });
-
-  const onChange = (e: any) => {
-    setValue(e.target.value);
-  };
-  return (
-    <EuiSelect
-      id={actionSelectId}
-      prepend="Then"
-      value={value}
-      options={options}
-      onChange={(e) => onChange(e)}
-    />
-  )
-}
-
-
-export default function Rule({ data, ...props }: { data: RuleProps }) {
-
-  const [isActive, setIsActive] = useState(false);
-  const [ruleConditions, setRuleConditions] = useState([])
-  const ruleAccordionId = useGeneratedHtmlId({ prefix: "rule" })
-
-  const extraAction = (
-    <EuiButtonIcon iconType='trash' color='danger' size='m' display='empty' />
-  )
-
-  const buttonContent = (
-    <EuiFlexGroup direction='row' gutterSize='m' alignItems='center'>
-      <EuiFlexItem>
-        <EuiForm>
-          <EuiFieldText value={data.ruleId} />
-        </EuiForm>
+      <EuiFlexItem grow={false}>
+        <span>
+          <EuiBadge color="default" iconType={rule.action_type === "pinned" ? "pinFilled" : "eyeClosed"} iconSide="left">{rule.actions.length}</EuiBadge>
+        </span>
       </EuiFlexItem>
       <EuiFlexItem grow={false}>
-        {!isActive &&
-          <EuiText size='s' color='subdued'>
-            <p>
-              field_name_here contains
-            </p>
-          </EuiText>
-        }
-      </EuiFlexItem>
-    </EuiFlexGroup>
-  )
-
-  const onToggle = (isOpen: boolean) => {
-    setIsActive(isOpen)
-  }
-
-
-  return (
-    <EuiPanel paddingSize='m' color={isActive ? 'subdued' : 'transparent'} hasBorder={false} hasShadow={false}>
-      <EuiAccordion
-        id={ruleAccordionId}
-        buttonContent={buttonContent}
-        extraAction={extraAction}
-        paddingSize="none"
-        onToggle={onToggle}
-        arrowDisplay="left"
-      >
-        <EuiSpacer size="s" />
-        <EuiFlexGroup
-          gutterSize='l'
-          direction='column'
+        <EuiPanel
+          color="transparent"
+          paddingSize="m"
+          aria-label="Drag Handle"
         >
-          <EuiFlexItem>
-            {data.criteria.length === 0 &&
-              <EmptyState
-                text='This rule will always run regardless of query'
-                label="Add condition"
-              />
-            }
-            <EuiFlexGroup gutterSize='s' direction='column'>
-              {data.criteria.map((crit: string, index: number) => (
-                <RuleCondition type={crit} />
-              ))}
-              {data.criteria.length !== 0 &&
-                <EuiButtonEmpty color="text" iconSide='left' iconType='plusInCircle'>And</EuiButtonEmpty>
-              }
-            </EuiFlexGroup>
-          </EuiFlexItem>
-          <EuiFlexItem>
-            <ActionType />
-          </EuiFlexItem>
-          <EuiFlexItem>
-            <EmptyState
-              text="The selected documents will be pinned at the top of the result list"
-              label="Add documents"
-            />
-          </EuiFlexItem>
-        </EuiFlexGroup>
-      </EuiAccordion>
+          <EuiButtonIcon iconType="expand" display='empty' color='text' onClick={showRule} />
+        </EuiPanel>
+      </EuiFlexItem>
+    </EuiFlexGroup >
 
-    </EuiPanel>
   )
 }
