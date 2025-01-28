@@ -14,7 +14,8 @@ import {
   EuiBasicTableColumn,
   EuiSpacer,
   EuiSearchBar,
-  EuiLink
+  EuiLink,
+  EuiPageBody
 } from "@elastic/eui";
 
 import { CreateModal } from './components/CreateModal';
@@ -77,14 +78,17 @@ export default function QueryRules() {
         bottomBorder
       />
 
-      <EuiSpacer />
-      <EuiSearchBar />
-      <EuiSpacer />
+      <EuiPageBody >
 
-      <EuiBasicTable
-        columns={columns}
-        items={items}
-      />
+        <EuiSpacer />
+        <EuiSearchBar />
+        <EuiSpacer />
+        <EuiBasicTable
+          columns={columns}
+          items={items}
+        />
+      </EuiPageBody>
+
     </>
   )
 }

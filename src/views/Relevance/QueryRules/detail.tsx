@@ -14,6 +14,7 @@ import {
 import { useState } from 'react';
 
 import { useNavigate } from 'react-router-dom';
+import { PageHeader } from './components/PageHeader';
 import { RuleFlyout } from './components/RuleFlyout';
 import { RuleList } from './components/RuleList';
 import { RULES } from './data/data';
@@ -45,48 +46,7 @@ export default function QueryRuleDetail() {
 
   return (
     <>
-      <EuiPageHeader
-        pageTitle='My new query rule'
-        description='Create and manage your query rules'
-        restrictWidth
-        rightSideGroupProps={{
-          gutterSize: "s"
-        }}
-        rightSideItems={[
-          <EuiButtonIcon
-            display='base'
-            iconType="boxesHorizontal"
-            color='text'
-            size='m'
-          />,
-          <EuiButton
-            isLoading={savingChanges}
-            color={hasChanges ? 'success' : 'text'}
-            fill={hasChanges}
-            iconType={hasChanges ? '' : 'check'}
-            iconSide="left"
-            onClick={hasChanges ? saveChanges : makeChanges}
-          >
-            {hasChanges ? 'Save changes' : 'Rule saved'}
-          </EuiButton>,
-          <EuiButton color='text'>
-            Open in Playground
-          </EuiButton>,
-        ]}
-        breadcrumbs={[
-          {
-            text: (
-              <>
-                <EuiIcon size="s" type="arrowLeft" />{` `}View all
-              </>
-            ),
-            color: 'primary',
-            'aria-current': false,
-            onClick: () => (navigate('/relevance/query-rules')),
-          },
-        ]}
-        bottomBorder
-      />
+      <PageHeader />
       <EuiPageBody paddingSize="none" restrictWidth>
         <EuiSpacer />
         <EuiFlexGroup alignItems='center' justifyContent='spaceBetween'>
