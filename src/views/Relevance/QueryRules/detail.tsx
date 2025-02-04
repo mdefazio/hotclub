@@ -24,14 +24,16 @@ export default function QueryRuleDetail() {
   const [savingChanges, setSavingChanges] = useState(false);
   const [ruleList, setRuleList] = useState(RULES)
   const [isFlyoutVisible, setIsFlyoutVisible] = useState(false);
+  const [isAddRuleFlyoutVisible, setIsAddRuleFlyoutVisible] = useState(false);
 
   const navigate = useNavigate();
 
   const makeChanges = () => setHasChanges(true);
   const closeFlyout = () => setIsFlyoutVisible(false);
   const showFlyout = () => setIsFlyoutVisible(true);
+  const showAddRuleFlyout = () => setIsAddRuleFlyoutVisible(true);
+  const closeAddRuleFlyout = () => setIsAddRuleFlyoutVisible(false);
 
-  const addRule = () => { }
   const deleteRule = () => { }
 
   const saveChanges = () => {
@@ -55,7 +57,7 @@ export default function QueryRuleDetail() {
               <EuiButton
                 iconSide='left'
                 iconType="plusInCircle"
-                onClick={addRule}
+                onClick={showAddRuleFlyout}
               >Add rule</EuiButton>
             </span>
           </EuiFlexItem>
@@ -70,12 +72,13 @@ export default function QueryRuleDetail() {
         </EuiFlexGroup>
         <EuiSpacer />
         <EuiFlexGroup direction='column' gutterSize='s'>
-          <RuleList ruleListArray={ruleList} showFlyout={() => showFlyout} />
+          <RuleList ruleListArray={ruleList} showFlyout={showFlyout} />
         </EuiFlexGroup>
-        <p>show flyout is {isFlyoutVisible ? "true" : "false"}</p>
-
         {isFlyoutVisible &&
           <RuleFlyout closeFlyout={closeFlyout} />
+        }
+        {isAddRuleFlyoutVisible &&
+          <RuleFlyout closeFlyout={closeAddRuleFlyout} />
         }
       </EuiPageBody>
     </>

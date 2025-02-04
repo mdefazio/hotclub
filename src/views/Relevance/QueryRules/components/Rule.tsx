@@ -11,6 +11,7 @@ import {
   EuiDescriptionList,
   EuiDescriptionListDescription,
   EuiDescriptionListTitle,
+  EuiThemeProvider,
   useEuiTheme,
   useEuiFontSize,
 } from '@elastic/eui';
@@ -21,11 +22,11 @@ import { RuleType } from '../data/types';
 
 interface RuleProps {
   rule: RuleType,
-  showRule: any,
+  showFlyout: any,
 }
 
-export default function Rule({ rule, showRule, ...props }: RuleProps) {
-  const { euiTheme } = useEuiTheme();
+export default function Rule({ rule, showFlyout, ...props }: RuleProps) {
+  const { euiTheme, colorMode } = useEuiTheme();
   return (
     <EuiFlexGroup
       gutterSize='m'
@@ -49,9 +50,11 @@ export default function Rule({ rule, showRule, ...props }: RuleProps) {
       </EuiFlexItem>
 
       <EuiFlexItem grow={false}>
-        <span>
-          <EuiBadge color="default" iconType={rule.action_type === "pinned" ? "pinFilled" : "eyeClosed"} iconSide="left">{rule.actions.length}</EuiBadge>
-        </span>
+        <EuiThemeProvider colorMode={rule.action_type === "pinned" ? colorMode : "inverse"}>
+          <span>
+            <EuiBadge color="default" iconType={rule.action_type === "pinned" ? "pinFilled" : "eyeClosed"} iconSide="left">{rule.actions.length}</EuiBadge>
+          </span>
+        </EuiThemeProvider>
       </EuiFlexItem>
       <EuiFlexItem grow={false}>
         <EuiPanel
@@ -59,7 +62,7 @@ export default function Rule({ rule, showRule, ...props }: RuleProps) {
           paddingSize="m"
           aria-label="Drag Handle"
         >
-          <EuiButtonIcon iconType="expand" display='empty' color='text' onClick={showRule} />
+          <EuiButtonIcon iconType="expand" display='empty' color='text' onClick={showFlyout} />
         </EuiPanel>
       </EuiFlexItem>
     </EuiFlexGroup >

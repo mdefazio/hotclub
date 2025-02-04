@@ -11,6 +11,22 @@ export const CRITERIA_TYPES = [
   "always"
 ]
 
+export const RULESET_LIST = [
+  {
+    id: "my_new_query_rule",
+    rule_total_count: 0
+  },
+  {
+    id: "beta",
+    rule_total_count: 0
+  },
+  {
+    id: "charlie",
+    rule_total_count: 0
+  }
+]
+
+
 
 export const RULES = [
   {

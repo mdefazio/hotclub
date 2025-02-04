@@ -19,31 +19,19 @@ import {
 } from "@elastic/eui";
 
 import { CreateModal } from './components/CreateModal';
+import { RULESET_LIST } from './data/data';
 
+// TODO: Move this to types file
 type Ruleset = {
   id: string,
   rule_total_count: number
 }
 
-const RULESET_LIST = [
-  {
-    id: "alpha",
-    rule_total_count: 0
-  },
-  {
-    id: "beta",
-    rule_total_count: 0
-  },
-  {
-    id: "charlie",
-    rule_total_count: 0
-  }
-]
 
 export default function QueryRules() {
   const navigate = useNavigate()
-  // const { queryRules }: any = useLoaderData();
 
+  // TODO: Can this be moved somewhere or imported?
   const columns: Array<EuiBasicTableColumn<Ruleset>> = [
     {
       field: 'id',
@@ -58,8 +46,6 @@ export default function QueryRules() {
       name: "Rules"
     }
   ]
-
-  const items = RULESET_LIST;
 
   return (
     <>
@@ -76,16 +62,17 @@ export default function QueryRules() {
           </EuiButtonEmpty>
         ]}
         bottomBorder
+        restrictWidth
       />
 
-      <EuiPageBody >
+      <EuiPageBody restrictWidth>
 
         <EuiSpacer />
         <EuiSearchBar />
         <EuiSpacer />
         <EuiBasicTable
           columns={columns}
-          items={items}
+          items={RULESET_LIST}
         />
       </EuiPageBody>
 
